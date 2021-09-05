@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Numbers from "./buttons/numbers/numbers";
+import Operation from "./buttons/operators/operation";
+import Equal from "./buttons/equal/equal";
+import { useState } from "react";
 
 function App() {
+  const [result, setResult] = useState("");
+
+  const handleClick = (e) => {
+    setResult(result + e.target.innerText);
+    console.log(e.target.innerText);
+  };
+
+  const clear = () => {
+    setResult("");
+  };
+
+  const sum = () => {
+    setResult(eval(result).toString());
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="calculator">
+      <div className="input">{result}</div>
+      <div className="buttons">
+        <Operation handleClick={handleClick} />
+        <Numbers handleClick={handleClick} clear={clear} />
+        <Equal sum={sum} />
+      </div>
     </div>
   );
 }

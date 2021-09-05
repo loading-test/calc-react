@@ -17,7 +17,11 @@ function App() {
   };
 
   const sum = () => {
-    setResult(eval(result).toString());
+    try {
+      setResult(eval(result).toString());
+    } catch (error) {
+      alert("Неверные данные!");
+    }
   };
 
   return (

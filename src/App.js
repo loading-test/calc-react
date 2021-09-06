@@ -3,13 +3,13 @@ import Numbers from "./buttons/numbers/numbers";
 import Operation from "./buttons/operators/operation";
 import Equal from "./buttons/equal/equal";
 import { useState } from "react";
+import { evaluate } from "mathjs";
 
 function App() {
   const [result, setResult] = useState("");
 
   const handleClick = (e) => {
     setResult(result + e.target.innerText);
-    console.log(e.target.innerText);
   };
 
   const clear = () => {
@@ -18,7 +18,7 @@ function App() {
 
   const sum = () => {
     try {
-      setResult(eval(result).toString());
+      setResult(evaluate(result));
     } catch (error) {
       alert("Неверные данные!");
     }
